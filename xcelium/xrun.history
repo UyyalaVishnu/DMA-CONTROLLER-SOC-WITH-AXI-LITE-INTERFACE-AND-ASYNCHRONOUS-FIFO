@@ -1,0 +1,3 @@
+s1(06Jun2026:11:42:21):  xrun dma.v -access +rwc -gui 
+s2(06Jun2026:11:46:06):  xrun dma.v dma_tb.v -access +rwc -gui 
+s3(06Jun2026:11:49:19):  xrun dma.v dma_tb.v -access +rwc -gui 

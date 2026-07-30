@@ -1,0 +1,125 @@
+#######################################################
+#                                                     
+#  Innovus Command Logging File                     
+#  Created on Sun Jun  7 10:10:03 2026                
+#                                                     
+#######################################################
+
+#@(#)CDS: Innovus v20.14-s095_1 (64bit) 04/19/2021 14:41 (Linux 2.6.32-431.11.2.el6.x86_64)
+#@(#)CDS: NanoRoute 20.14-s095_1 NR210411-1939/20_14-UB (database version 18.20.547) {superthreading v2.13}
+#@(#)CDS: AAE 20.14-s018 (64bit) 04/19/2021 (Linux 2.6.32-431.11.2.el6.x86_64)
+#@(#)CDS: CTE 20.14-s027_1 () Apr 13 2021 21:29:07 ( )
+#@(#)CDS: SYNTECH 20.14-s017_1 () Mar 25 2021 13:07:27 ( )
+#@(#)CDS: CPE v20.14-s080
+#@(#)CDS: IQuantus/TQuantus 20.1.1-s460 (64bit) Fri Mar 5 18:46:16 PST 2021 (Linux 2.6.32-431.11.2.el6.x86_64)
+
+set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+suppressMessage ENCEXT-2799
+getVersion
+getVersion
+getVersion
+win
+set init_gnd_net VSS
+set init_lef_file /home/install/FOUNDRY/digital/45nm/LIBS/lef/gsclib045.fixed.lef
+set init_verilog /home/vlsi/vvr/project/dma_netlist.v
+set init_mmmc_file /home/vlsi/vvr/project/mmmc.tcl
+set init_top_cell dma
+set init_pwr_net VDD
+init_design
+floorPlan -r 1.0 0.5 5.0 5.0 5.0 5.0
+zoomBox -1.44250 2.90200 66.42550 63.65850
+zoomBox 2.83700 8.15650 60.52550 59.80000
+zoomBox -6.47900 -3.28050 73.36750 68.19900
+zoomBox -12.40300 -10.55350 81.53400 73.54000
+zoomBox -19.37250 -19.11000 91.14150 79.82350
+zoomBox -27.95050 -29.15150 102.06600 87.24100
+fit
+globalNetConnect VDD -type pgpin -pin VDD -inst *
+globalNetConnect VSS -type pgpin -pin VSS -inst *
+addRing -nets {VDD VSS} -width 0.6 -spacing 0.5 -layer_top M2 -layer_bottom M2 -layer_left M1 -layer_right M1
+sroute -nets {VDD VSS}
+place_design
+zoomBox -38.88050 -0.62000 129.78050 80.92150
+zoomBox -14.14250 5.26200 107.71550 64.17600
+zoomBox -4.48150 7.55900 99.09800 57.63600
+zoomBox 3.73050 9.51150 91.77350 52.07700
+zoomBox 10.71050 11.17100 85.54750 47.35200
+zoomBox 16.64400 12.58150 80.25550 43.33550
+zoomBox 21.68650 13.78050 75.75700 39.92150
+zoomBox 16.64300 12.58100 80.25550 43.33550
+zoomBox 10.70900 11.17000 85.54800 47.35200
+zoomBox 3.72750 9.51000 91.77450 52.07750
+zoomBox -4.48500 7.55700 99.09950 57.63650
+zoomBox -14.14800 5.25950 107.71750 64.17700
+zoomBox -38.88800 -0.62250 129.78350 80.92400
+zoomBox -54.62100 -4.36350 143.81600 91.57350
+optDesign -preCTS
+setDesignMode -process 45
+ccopt_design
+optDesign -postCTS -hold
+routeDesign
+editPin -fixOverlap 1 -unit TRACK -spreadDirection clockwise -side Left -layer -spreadType start -pinwidth 0.092 -pinDepth 0.228 -pin {done irq rst_n axi_clk dma_clk}
+routeDesign
+routeDesign
+optDesign -postRoute
+setNanoRouteMode -routeWithTimingDriven false
+setNanoRouteMode -routeWithSiDriven false
+routeDesign -globalDetail
+optDesign -postRoute
+setIoFlowFlag 0
+snapFPlanIO -keepExistingConstraints
+assignIoPins
+setNanoRouteMode -routeWithTimingDriven false
+setNanoRouteMode -routeWithSiDriven false
+setNanoRouteMode -routeInsertAntennaDiode false
+routeDesign -globalDetail
+routeDesign -globalDetail -viaOpt
+optDesign -postRoute
+setNanoRouteMode -routeWithTimingDriven false
+setNanoRouteMode -routeWithSiDriven false
+setNanoRouteMode -routeTopRoutingLayer 6
+setNanoRouteMode -routeBottomRoutingLayer 1
+routeDesign -globalDetail
+optDesign -postRoute -hold
+setOptMode -holdTargetSlack 0.05
+optDesign -postRoute -hold
+zoomBox 27.48450 19.74250 91.10050 50.49850
+report_timing -late
+report_timing -early
+set_false_path -from [get_ports rst_n] -to [all_registers]
+update_constraint_mode -name func \-sdc_files /home/vlsi/vvr/project/dma.sdc
+optDesign -postRoute -hold
+report_timing -early
+report_timing -late
+zoomBox 8.50100 14.36450 96.55200 56.93400
+zoomBox -3.57100 10.94450 100.01850 61.02650
+zoomBox -58.50050 -18.03100 139.94550 77.91050
+zoomBox -78.77950 -28.72900 154.68650 84.14350
+zoomBox -57.27950 -16.87300 141.16700 79.06850
+fit
+report_timing -path_group axi_clk -slack_lesser_than 0
+report_constraint -all_violators
+report_timing
+report_power
+addFiller -cell FILLCELL_X4 FILLCELL_X2 FILLCELL_X1 -prefix FILLER
+addFiller -cell FILLCELL_X4 FILLCELL_X2 FILLCELL_X1 -prefix FILLER
+verify_drc
+verifyConnectivity
+verifyConnectivity
+timeDesign -postRoute
+setAnalysisMode -analysisType onChipVariation
+setAnalysisMode -cppr both
+timeDesign -postRoute
+addFiller -cell {FILL1 FILL2 FILL64} -prefix FILLER
+ecoRoute
+ecoRoute -target
+verifyConnectivity
+saveDesign dma_final_post_filler.enc
+zoomBox -15.51400 28.14800 88.06600 78.22500
+saveDesign dma_final_post_filler.enc
+streamOut dma_final.gds -mapFile streamOut.map -libName DesignLib -structureName dma -units 2000 -mode ALL
+report_timing -machine_readable -path_type full_clock -max_paths 100 > dma_final_timing.rpt
+report_power > dma_final_power.rpt
+report_area > dma_final_area.rpt
+report_timing -max_paths 10
+verifyConnectivity

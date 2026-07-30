@@ -1,0 +1,77 @@
+xrun(64): 20.09-s012: (c) Copyright 1995-2021 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	20.09-s012: Started on Jun 06, 2026 at 11:49:19 IST
+xrun
+	dma.v
+	dma_tb.v
+	-access +rwc
+	-gui
+
+-------------------------------------
+Relinquished control to SimVision...
+xcelium> 
+xcelium> source /home/install/XCELIUM2009/tools/xcelium/files/xmsimrc
+xcelium> database -open waves -into waves.shm -default
+Created default SHM database waves
+xcelium> probe -create -shm dma_tb.axi_clk dma_tb.dma_clk dma_tb.done dma_tb.done_seen dma_tb.fail_count dma_tb.irq dma_tb.irq_seen dma_tb.pass_count dma_tb.read_data dma_tb.rst_n dma_tb.s_axi_araddr dma_tb.s_axi_arready dma_tb.s_axi_arvalid dma_tb.s_axi_awaddr dma_tb.s_axi_awready dma_tb.s_axi_awvalid dma_tb.s_axi_bready dma_tb.s_axi_bresp dma_tb.s_axi_bvalid dma_tb.s_axi_rdata dma_tb.s_axi_rready dma_tb.s_axi_rresp dma_tb.s_axi_rvalid dma_tb.s_axi_wdata dma_tb.s_axi_wready dma_tb.s_axi_wvalid dma_tb.tc_num dma_tb.timeout
+Created probe 1
+xcelium> run
+
+=======================================================
+ DMA SoC Self-Checking Testbench [Cadence Xcelium]
+ AXI clk: 100 MHz | DMA clk: 142 MHz
+=======================================================
+
+  TC1: Basic 8-word transfer
+  [PASS] TC1: one pulsed after 8-word transfer
+  [PASS] TC1: irq pulsed after 8-word transfer
+  [PASS] TC1: STATUS=1 after transfer complete (got 0x00000001)
+
+  TC2: Single-word transfer (length=1)
+  [PASS] TC2: one pulsed for length=1 transfer
+  [PASS] TC2: irq pulsed for length=1 transfer
+  [PASS] TC2: STATUS=1 after length=1 transfer (got 0x00000001)
+
+  TC3: Full FIFO depth transfer (length=16)
+  [PASS] TC3: ne pulsed for full-FIFO transfer
+  [PASS] TC3: rq pulsed for full-FIFO transfer
+  [PASS] TC3: ATUS=1 after full-depth transfer (got 0x00000001)
+
+  TC4: Back-to-back transfers (no reset between)
+  [PASS] TC4:   done pulsed on transfer 1 of 2
+  [PASS] TC4:   done pulsed on transfer 2 of 2
+  [PASS] TC4:    irq pulsed on transfer 2 of 2
+
+  TC5: STATUS register read-only behaviour
+  [PASS] TC5:     STATUS=0 before any transfer (got 0x00000000)
+  [PASS] TC5: TUS=1 immediately after transfer (got 0x00000001)
+  [PASS] TC5:  unchanged after write (rd-only) (got 0x00000001)
+  [PASS] TC5:             STATUS=0 after reset (got 0x00000000)
+
+  TC6: LENGTH register read/write coherence
+  [PASS] TC6:     LENGTH reads back 0x00000008 (got 0x00000008)
+  [PASS] TC6:     LENGTH reads back 0x0000000F (got 0x0000000f)
+  [PASS] TC6:     LENGTH reads back 0x00000001 (got 0x00000001)
+
+  TC7: START register is write-only and self-clearing
+  [PASS] TC7: ads back 0x00000000 (write-only) (got 0x00000000)
+
+  TC8: Zero-length transfer is a no-op
+  [PASS] TC8:   done NOT asserted for length=0
+  [PASS] TC8:    irq NOT asserted for length=0
+  [PASS] TC8: STATUS=0 after zero-length no-op (got 0x00000000)
+
+=======================================================
+ RESULTS: 23 PASSED / 0 FAILED / 23 TOTAL
+=======================================================
+
+Memory Usage - Current physical: 71.9M, Current virtual: 546.2M
+CPU Usage - 0.4s system + 0.3s user = 0.7s total (1.4% cpu)
+Simulation complete via $finish(2) at time 6975 NS + 0
+./dma_tb.v:459     $finish(2);
+xcelium> run
+xmsim: *E,RNFNSH: Cannot continue simulation due to a previous $finish.
+xcelium> ^C
+xcelium> exit
+...Regained control from SimVision
+-------------------------------------
+TOOL:	xrun(64)	20.09-s012: Exiting on Jun 06, 2026 at 12:01:35 IST  (total: 00:12:16)

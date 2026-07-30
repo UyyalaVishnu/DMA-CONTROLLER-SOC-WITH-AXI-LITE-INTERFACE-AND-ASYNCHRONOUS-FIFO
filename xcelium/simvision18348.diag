@@ -1,0 +1,104 @@
+*** Message Type: info ***
+When: Sat Jun 06 11:49:25 AM IST 2026
+SimVision started.
+Version: TOOL:  simvision(64)   20.09-s012
+User: vlsi
+Host: localhost
+Platform: Linux/x86_64/3.10.0-1160.el7.x86_64
+Started: Sat Jun 06 11:49:24 AM IST 2026
+Command: /home/install/XCELIUM2009/tools.lnx86/simvision/bin/64bit/simvision.exe -connect dc:localhost:43195 -64BIT -nocopyright
+Work Directory: /home/vlsi/vvr/project
+ 
+*** Message Type: info ***
+When: Sat Jun 06 11:49:25 AM IST 2026
+Create browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Sat Jun 06 11:49:26 AM IST 2026
+Create console window: "Console"
+ 
+*** Message Type: info ***
+When: Sat Jun 06 11:49:26 AM IST 2026
+Connect to Simulator
+      Design: worklib.dma_tb:v
+   Languages: verilog
+   Simulator: XM-Sim
+     Version: TOOL:   xmsim(64)       20.09-s012
+        User: vlsi
+        Host: localhost
+Time Started: Sat Jun 06 11:49:22 AM IST 2026
+  Process ID: 18297
+   Directory: /home/vlsi/vvr/project
+     Command: xrun dma.v dma_tb.v -access +rwc -gui
+
+ 
+*** Message Type: info ***
+When: Sat Jun 06 11:49:27 AM IST 2026
+Create utility window: "Properties"
+ 
+*** Message Type: info ***
+When: Sat Jun 06 11:49:53 AM IST 2026
+Create waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Sat Jun 06 11:59:58 AM IST 2026
+Create source window: "Source Browser 1"
+ 
+*** Message Type: info ***
+When: Sat Jun 06 11:59:59 AM IST 2026
+Delete waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Sat Jun 06 11:59:59 AM IST 2026
+Delete browser window: "Design Browser 1"
+ 
+*** Message Type: error ***
+When: Sat Jun 06 11:59:59 AM IST 2026
+invalid command name ".waveWindow0.menubar.view.mb"
+    while executing
+"$w cget -direction"
+    (procedure "tk::MbPost" line 18)
+    invoked from within
+"tk::MbPost $tk::Priv(inMenubutton) 93 74"
+    invoked from within
+"if {$tk::Priv(inMenubutton) ne ""} {
+ tk::MbPost $tk::Priv(inMenubutton) 93 74
+    }"
+    (command bound to event)
+ 
+*** Message Type: error ***
+When: Sat Jun 06 11:59:59 AM IST 2026
+invalid command name ".waveWindow0"
+    while executing
+"$window addSelected"
+    (object "::windows" method "::Windows::sendToWindow" body line 63)
+    invoked from within
+"::windows sendToWindow $type $name $sourcecursor"
+    (method "::SVToolWindow::_doSendToWindow" body line 31)
+    invoked from within
+"::.waveWindow0 _doSendToWindow waveform target"
+    (in namespace inscope "::SVToolWindow" script line 1)
+    invoked from within
+"namespace inscope ::SVToolWindow {::.waveWindow0 _doSendToWindow waveform target}"
+    invoked from within
+".waveWindow0.tba.toolbar8.targets.sender invoke waveform"
+    ("after" script)
+ 
+*** Message Type: error ***
+When: Sat Jun 06 11:59:59 AM IST 2026
+invalid command name ".waveWindow0.menubar.edit.mb"
+    while executing
+"$w cget -direction"
+    (procedure "tk::MbPost" line 18)
+    invoked from within
+"tk::MbPost $tk::Priv(inMenubutton) 58 77"
+    invoked from within
+"if {$tk::Priv(inMenubutton) ne ""} {
+ tk::MbPost $tk::Priv(inMenubutton) 58 77
+    }"
+    (command bound to event)
+ 
+*** Message Type: info ***
+When: Sat Jun 06 12:00:05 PM IST 2026
+SimVision Exit.
+ 
