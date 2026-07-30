@@ -102,9 +102,6 @@ Contributions are welcome. Please:
 1. Open an issue to discuss larger changes.
 2. Submit pull requests with clear descriptions and tests.
 
-License
--------
-This repository is provided under the MIT License. See LICENSE file for details, or add one if not present.
 
 Maintainer
 ----------
